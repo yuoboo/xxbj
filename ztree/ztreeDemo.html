@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ztree</title>
+    <link rel="stylesheet" href="./static/css/demo.css" type="text/css">
+	<link rel="stylesheet" href="./static/css/zTreeStyle/zTreeStyle.css" type="text/css">
+	<script type="text/javascript" src="./static/js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="./static/js/jquery.ztree.core.js"></script>
+</head>
+<script>
+    var setting = {};
+    var zNodes = [
+        {"name": "父节点01", open:true,
+            children: [
+                {"name": "子节点01-01",
+                    children: [
+                        {"name": "子节点01-01-01", url:"http://www.baidu.com", target: 'myframe'},
+                        {"name": "子节点01-01-02", url:"http://www.baidu.com"},
+                        {"name": "子节点01-01-03", url:"http://www.baidu.com", target: '_self'},
+                    ]
+                },
+                {"name": "子节点01-01"}
+            ]
+        },
+        {"name": "父节点02",
+            children: [
+                {"name": "子节点02-0"},
+                {"name": "子节点02-01"}
+            ]
+        },
+        {"name": "父节点03",
+            children: [
+                {"name": "子节点03-01"},
+                {"name": "子节点03-01"}
+            ]
+        },
+        {"name": "父节点04",
+            children: [
+                {"name": "子节点04-01"},
+                {"name": "子节点04-01"}
+            ]
+        },
+    ];
+
+    $(document).ready(function () {
+        $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+    })
+
+</script>
+<body>
+    <h4>ztree Demo</h4>
+    <div class="content_wrap">
+        <div class="zTreeDemoBackground left">
+		    <ul id="treeDemo" class="ztree"></ul>
+	    </div>
+        <div class="right">
+            <iframe name="myframe" width="900" height="700" frameborder="0"></iframe>
+
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+- hosts: webservers
+  vars:
+    worker_pro: 4
+    num_cpus: 4
+    root: /data
+  remote_user: root
+  tasks:
+  - name: this is name
+    yum: pkg=nginx state=latest
+  - name: write
+    template: src=/home/test/ansible/nginx/nginx2.conf dest=/etc/nginx/nginx.conf
+    notify:
+    - restart: nginx
+  handlers:
+    - name: restart nginx
+      service: name=nginx state=restarted
+  email:
+    qq:
+      host: smtp.qq.com
+      port: 465
+      user: xxx@qq.com
+      passwd: xxxxx
+      use_ssl: true
+    163:
+      host: smtp.163.com
+      port: 25
+      user: xxx@163.com
+      passwd: xxxxx
+      use_ssl: true
