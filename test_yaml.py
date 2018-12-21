@@ -32,5 +32,5 @@ def test_yaml():
 
 
 if __name__ == '__main__':
-    # yaml_obj()
-    test_yaml()
+    yaml_obj()
+    # test_yaml()
