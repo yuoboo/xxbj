@@ -23,11 +23,12 @@ def _letterCombinations(digits):
 
     _res = list(_init[0])
     for _v in _init[1:]:
-        _tmp = []
-        for _j in _v:
-            _tmp += list(map(lambda x: x + _j, _res))
+        _tmp = [x+y for x in _res for y in _v]
+        # _tmp = []
+        # for _j in _v:
+        #     _tmp += list(map(lambda x: x + _j, _res))
         _res = _tmp
-    _res.sort()
+    # _res.sort()
     return _res
 
 
@@ -78,6 +79,42 @@ def divide(dividend, divisor):
         return INT_MAX
 
 
+# 报数序列
+def baoshu(n):
+    if n == 1:
+        return 1
+
+    # 1211 112221
+    pre_value = str(baoshu(n-1))
+    i = 0
+    res = ''
+    for j in range(len(pre_value)):
+        if pre_value[j] != pre_value[i]:
+            res += str(j-i) + pre_value[i]
+            i = j
+
+    res += str(len(pre_value)-i) + pre_value[i]
+
+    return res
+
+
+# 给定一个无重复元素的数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。
+def combinationSum(candidates, target):
+    _vals = [i for i in candidates if i <= target]
+    _vals.sort()
+    if not _vals:
+        return []
+    _tar = target
+    _res = list()
+    for j in range(len(_vals)):
+        i = 0
+        while _tar >= _vals[j]:
+            _tar -= _vals[j]
+            i += 1
+        if _tar in _vals:
+            pass
+
+
 if __name__ == '__main__':
     # _nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4]
     # print _removeDuplicates(_nums)
@@ -89,7 +126,11 @@ if __name__ == '__main__':
     # test_for('12345')
     # test_for({"a": 1, "b": 2, "c": 3})
 
-    print divide(10, 0)
-    print divide(-7, 2)
-    print divide(10000, -3)
-    print divide(-9, -10)
+    # print divide(10, 0)
+    # print divide(-7, 2)
+    # print divide(10000, -3)
+    # print divide(-9, -10)
+    print baoshu(1)
+    print baoshu(3)
+    print baoshu(5)
+    print baoshu(9)
